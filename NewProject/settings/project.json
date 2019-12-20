@@ -9,7 +9,7 @@
     ]
   ],
   "excluded-modules": [],
-  "last-module-event-record-time": 0,
+  "last-module-event-record-time": 1576825950727,
   "design-resolution-width": 960,
   "design-resolution-height": 640,
   "fit-width": false,
@@ -21,7 +21,7 @@
     "width": 960,
     "height": 640
   },
-  "assets-sort-type": "name",
+  "assets-sort-type": "ext",
   "facebook": {
     "enable": false,
     "appID": "",
