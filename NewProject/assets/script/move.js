@@ -27,14 +27,63 @@ cc.Class({
         //         this._bar = value;
         //     }
         // },
-        type: cc.String
+        type: cc.String,
+        pengzhuang: cc.String,
+        map: cc.Array,
+        onetwo: cc.SpriteFrame,
+        onethree: cc.SpriteFrame,
+        twoone: cc.SpriteFrame,
+        threeone: cc.SpriteFrame,
+        gameview:cc.Node
+
     },
 
     // LIFE-CYCLE CALLBACKS:
 
     onLoad() {
+        this.map = [
+            ["1*2", 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, "1*2", 0],
+            [0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0],
+        ]
+        var m = this.map;
+        //绘制地图
+        for (var i = 0; i < m.length; i++) {
+            for (var j = 0; j < m.length; j++) {
+
+                if (m[i][j] == "1*2") {
+                    //绘制1*2的纵向的
+                    var node = new cc.Node();
+                    var sprite = node.addComponent(cc.Sprite);
+                    sprite.spriteFrame = this.onetwo;
+                    node.width = 100;
+                    node.height = 100;
+                    node.x = 300;
+                    node.y = 300;
+                    node.type = "v";
+                    
+                    node.on(cc.Node.EventType.TOUCH_START, function (t) {
+                        // console.log("触摸开始");
+                    }, node)
+                    //监听
+                    node.on(cc.Node.EventType.TOUCH_MOVE, this.on_touch_move, node);
+                    //this.node.on(cc.Node.EventType.TOUCH_MOVE,this.on_touch_move,this);
+                    //触摸抬起
+                    node.on(cc.Node.EventType.TOUCH_END, this.on_touch_move_end, node);
+                    node.on(cc.Node.EventType.TOUCH_CANCEL, this.on_touch_move_end, node);
+                    cc.director.getScene().addChild(node);
+                }
+            }
+        }
+
+
+
+
         this.node.on(cc.Node.EventType.TOUCH_START, function (t) {
-            console.log("触摸开始");
+            // console.log("触摸开始");
         }, this)
         //监听
         this.node.on(cc.Node.EventType.TOUCH_MOVE, this.on_touch_move, this);
@@ -42,10 +91,13 @@ cc.Class({
         //触摸抬起
         this.node.on(cc.Node.EventType.TOUCH_END, this.on_touch_move_end, this);
         this.node.on(cc.Node.EventType.TOUCH_CANCEL, this.on_touch_move_end, this);
+        cc.director.getCollisionManager().enabled = true; //开启碰撞检测，默认为关闭
+        cc.director.getCollisionManager().enabledDebugDraw = true; //开启碰撞检测范围的绘制
+        cc.director.getCollisionManager().enabledDrawBoundingBox = true; //开启碰撞组件的包围盒绘制
     },
     on_touch_move_end(t) {
-        cc.log(t)
-        cc.log("触摸结束")
+        // cc.log(t)
+        // cc.log("触摸结束")
     },
 
     on_touch_move(t) {
@@ -80,6 +132,16 @@ cc.Class({
     start() {
 
     },
+    onCollisionEnter: function (other, self) {
+        // cc.log(other)
+        cc.log("碰上了")
+        this.pengzhuang = "true"
+        cc.log(other.tag)
+    },
+    onCollisionExit: function (other, self) {
+        cc.log("离开了")
+        cc.log(other.tag)
 
+    }
     // update (dt) {},
 });
