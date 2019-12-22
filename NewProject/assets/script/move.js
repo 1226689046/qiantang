@@ -41,43 +41,42 @@ cc.Class({
     // LIFE-CYCLE CALLBACKS:
 
     onLoad() {
-        this.map = [
-            ["1*2", 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, "1*2", 0],
-            [0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0],
-        ]
-        var m = this.map;
-        //绘制地图
-        for (var i = 0; i < m.length; i++) {
-            for (var j = 0; j < m.length; j++) {
-
-                if (m[i][j] == "1*2") {
-                    //绘制1*2的纵向的
-                    var node = new cc.Node();
-                    var sprite = node.addComponent(cc.Sprite);
-                    sprite.spriteFrame = this.onetwo;
-                    node.width = 100;
-                    node.height = 100;
-                    node.x = 300;
-                    node.y = 300;
-                    node.type = "v";
+        // this.map = [
+        //     ["1*2", 0, 0, 0, 0, 0],
+        //     [0, 0, 0, 0, 0, 0],
+        //     [0, 0, 0, 0, 0, 0],
+        //     [0, 0, 0, 0, "1*2", 0],
+        //     [0, 0, 0, 0, 0, 0],
+        //     [0, 0, 0, 0, 0, 0],
+        // ]
+        // var m = this.map;
+        // //绘制地图
+        // for (var i = 0; i < m.length; i++) {
+        //     for (var j = 0; j < m.length; j++) {
+        //         if (m[i][j] == "1*2") {
+        //             //绘制1*2的纵向的
+        //             var node = new cc.Node();
+        //             var sprite = node.addComponent(cc.Sprite);
+        //             sprite.spriteFrame = this.onetwo;
+        //             node.width = 100;
+        //             node.height = 100;
+        //             node.x = 300;
+        //             node.y = 300;
+        //             node.type = "v";
                     
-                    node.on(cc.Node.EventType.TOUCH_START, function (t) {
-                        // console.log("触摸开始");
-                    }, node)
-                    //监听
-                    node.on(cc.Node.EventType.TOUCH_MOVE, this.on_touch_move, node);
-                    //this.node.on(cc.Node.EventType.TOUCH_MOVE,this.on_touch_move,this);
-                    //触摸抬起
-                    node.on(cc.Node.EventType.TOUCH_END, this.on_touch_move_end, node);
-                    node.on(cc.Node.EventType.TOUCH_CANCEL, this.on_touch_move_end, node);
-                    cc.director.getScene().addChild(node);
-                }
-            }
-        }
+        //             node.on(cc.Node.EventType.TOUCH_START, function (t) {
+        //                 // console.log("触摸开始");
+        //             }, node)
+        //             //监听
+        //             node.on(cc.Node.EventType.TOUCH_MOVE, this.on_touch_move, node);
+        //             //this.node.on(cc.Node.EventType.TOUCH_MOVE,this.on_touch_move,this);
+        //             //触摸抬起
+        //             node.on(cc.Node.EventType.TOUCH_END, this.on_touch_move_end, node);
+        //             node.on(cc.Node.EventType.TOUCH_CANCEL, this.on_touch_move_end, node);
+        //             cc.director.getScene().addChild(node);
+        //         }
+        //     }
+        // }
 
 
 
